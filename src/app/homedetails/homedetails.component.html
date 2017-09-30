@@ -1,0 +1,17 @@
+<div class="container" *ngIf="error else noerror">
+  <h1 class="text-center text-danger">HttpError {{ showerror.status }} : {{ showerror.error }}</h1>
+</div>
+
+<ng-template #noerror>
+  <div class="container" *ngIf="homedetail else notexists">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let detail of homedetail">
+        {{ detail }}
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #notexists>
+  <h3> House doesnt exist </h3>
+</ng-template>

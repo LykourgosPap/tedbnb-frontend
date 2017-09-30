@@ -1,0 +1,25 @@
+<div class="container" *ngIf="auth.error">
+  <h1 class="text-danger text-danger"> HttpError {{ auth.showerror.status }} : {{ auth.showerror.error }}</h1>
+</div>
+
+
+  <div class="container-fluid text-center">
+    <form *ngIf='LoginForm' [formGroup]="LoginForm" (ngSubmit)="Login(LoginForm.value)">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="formgrid" formControlName="username">
+        <div class="alert" *ngIf="!LoginForm.controls['username'].valid && LoginForm.controls['username'].touched"> This field is required </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="formgrid" formControlName="password">
+        <div class="alert" *ngIf="!LoginForm.controls['password'].valid && LoginForm.controls['password'].touched"> This field is required </div>
+
+        <div class="form-group">
+          <input type="submit" class="btn-info" value="Login">
+        </div>
+
+      </div>
+    </form>
+  </div>
