@@ -1,14 +1,36 @@
-<div class="container" *ngIf="error else noerror">
+<div class="container-fluid" *ngIf="error else noerror">
   <h1 class="text-center text-danger">HttpError {{ showerror.status }} : {{ showerror.error }}</h1>
 </div>
 
 <ng-template #noerror>
-  <div class="container" *ngIf="homedetail else notexists">
-    <ul class="list-group">
+  <div class="row" *ngIf="homedetail else notexists">
+    <ul class="list-group col-3">
       <li class="list-group-item" *ngFor="let detail of homedetail">
         {{ detail }}
       </li>
     </ul>
+
+  <div class="col-9 container-fluid">
+    <div class="row justify-content-start">
+      <ul class="list-group col-3" *ngFor="let photo of homephotos">
+        <li class="list-group-item">
+          <img src="{{photo}}" alt="Smiley face" class="img-fluid">
+        </li>
+      </ul>
+    </div>
+    <div class="row justify-content-start">
+      <h3 class="text-info">Reviews:</h3>
+      <ul class="list-group col-7">
+        <li class="list-group-item"  *ngFor="let review of homereviews">
+          <blockquote class="blockquote">
+            <footer class="blockquote-footer">{{review.star}} <cite title="Source Title">/5 By {{review.id}}</cite></footer>
+            <p class="mb-0"> {{review.review}}</p>
+          </blockquote>
+        </li>
+      </ul>
+    </div>
+    </div>
+
   </div>
 </ng-template>
 

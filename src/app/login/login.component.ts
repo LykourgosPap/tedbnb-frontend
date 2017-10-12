@@ -12,8 +12,8 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   LoginForm: FormGroup;
-  
-  constructor(private fb: FormBuilder, private http: HttpClient, private auth: AuthService, private router: Router) {
+
+  constructor(private fb: FormBuilder, public auth: AuthService) {
     this.LoginForm = fb.group({
       'username': [null, (Validators.required),],
       'password': [null, Validators.required],

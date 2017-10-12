@@ -13,13 +13,20 @@ import { LoginComponent } from './login/login.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { HttpService } from './services/http/http.service';
+import { ReviewsService } from './services/reviews/reviews.service'
 import { AgmCoreModule } from '@agm/core';
+import { ProfileComponent } from './profile/profile.component';
+import { MyhousesComponent } from './myhouses/myhouses.component';
+import { MessageComponent } from './message/message.component';
+//import { CreatehouseComponent } from './createhouse/createhouse.component';
 
 const appRoutes = [
   { path:'register', component:RegisterComponent },
   { path: '', component:HomeComponent },
   { path: 'login', component:LoginComponent},
   { path: 'houses/:id', component: HomedetailsComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'myhouses', component: MyhousesComponent},
   { path: '**', component: Page404Component },
 ]
 
@@ -31,6 +38,10 @@ const appRoutes = [
     HomeComponent,
     LoginComponent,
     HomedetailsComponent,
+    ProfileComponent,
+    MyhousesComponent,
+    MessageComponent,
+    //CreatehouseComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,7 @@ const appRoutes = [
   ),
     HttpClientModule,
   ],
-  providers: [AuthService, HttpService],
+  providers: [AuthService, HttpService, ReviewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -5,24 +5,26 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
-  loggedin: boolean = false
-  loggedChange: Subject<boolean> = new Subject<boolean>()
+  public loggedin: boolean
+  public loggedChange: Subject<boolean> = new Subject<boolean>()
   error: boolean = false
   showerror: any
   private BASE_URL: string = 'http://127.0.0.1:8000/rest-auth/login/';
 
   constructor(private http: HttpService, private router : Router) {
-    this.loggedChange.subscribe( data => this.loggedin = data)
+    this.loggedin = !(!localStorage.getItem('JWTtoken'))
+    this.loggedChange.next(this.loggedin);
+    console.log(this.loggedin)
   }
 
   login(credentials){
-    this.http.post(this.BASE_URL, credentials)
+    this.http.Post(this.BASE_URL, credentials)
       .subscribe(
       res => {
         this.error = false
         localStorage.setItem('JWTtoken', res['token']);
         localStorage.setItem('username', res['user']['username']);
-        this.loggedChange.next(true);
+        this.setuser()
         this.router.navigateByUrl('/')
       },
       err => {
@@ -33,8 +35,16 @@ export class AuthService {
     }
 
   logout(){
-    this.loggedChange.next(false);
+    this.logoutuser()
     localStorage.removeItem('JWTtoken')
     localStorage.removeItem('username')
+  }
+
+  setuser(){
+    this.loggedChange.next(true)
+  }
+
+  logoutuser(){
+    this.loggedChange.next(false)
   }
 }

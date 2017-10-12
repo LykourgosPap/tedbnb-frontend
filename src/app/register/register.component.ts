@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http/http.service';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +10,9 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   RegisterForm: FormGroup;
   passmatch: boolean = true;
+  imageSrc
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpService) {
     this.RegisterForm = fb.group({
       'username': [null, (Validators.required),],
       'email': [null, Validators.compose([Validators.required, Validators.email]),],
@@ -32,6 +33,16 @@ export class RegisterComponent implements OnInit {
     return (pass == confpass ? true : false);
   }
 
+  attachFile(event) : void {
+      var reader = new FileReader();
+      let _self = this;
+
+      reader.onload = function(e) {
+        _self.imageSrc = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+     }
+
   Postit(post) {
     let formvalid : boolean=true;
     for (let i in this.RegisterForm.controls){
@@ -42,11 +53,11 @@ export class RegisterComponent implements OnInit {
     if (!this.passmatch || !formvalid)
       return;
     let typeint : number;
-    if (post.Type == 'renter')
+    if (post.Type == 'Host')
       typeint = 2;
     else
       typeint = 1;
-    const req = this.http.post('http://127.0.0.1:8000/api/users/', {
+    const req = this.http.Post('http://127.0.0.1:8000/api/users/', {
       username: post.username,
       email: post.email,
       last_name: post.last_name,

@@ -49,9 +49,9 @@
       <div class="form-group">
         <label>User Type:</label>
         <label>Tenant</label>
-        <input type="radio" class="formgrid" formControlName="Type" value="tenant">
+        <input type="radio" class="formgrid" formControlName="Type" value="Tenant">
         <label>Renter</label>
-        <input type="radio" class="formgrid" formControlName="Type" value="renter">
+        <input type="radio" class="formgrid" formControlName="Type" value="Host">
         <div class="alert" *ngIf="!RegisterForm.controls['Type'].valid"> Please choose an account Type </div>
       </div>
 

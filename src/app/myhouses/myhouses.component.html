@@ -1,0 +1,8 @@
+
+<div class="container" *ngIf="houses">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of houses | paginate: { itemsPerPage: 10, currentPage: p }"> <a routerLink="/houses/{{item.id}}"> {{ item.id }} </a> </li>
+  </ul>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

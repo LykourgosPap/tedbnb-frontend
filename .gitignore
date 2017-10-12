@@ -1,0 +1,25 @@
+# compiled output Created by https://www.gitignore.io/api/angular/dist
+/tmp /out-tsc
+### Angular ###
+## Angular ### dependencies
+# compiled output/node_modules
+/dist /tmp# IDEs and editors /.idea .project .classpath .c9/ *.launch .settings/ *.sublime-workspace /app/**/*.js /app/**/*.js.map# IDE - VSCode .vscode/*
+!.vscode/settings.json !.vscode/tasks.json !.vscode/launch.json !.vscode/extensions.json
+
+# misc dependencies/.sass-cache
+/node_modules/connect.lock /coverage /libpeerconnection.log npm-debug.log testem.log /typings /bower_components
+# e2e IDEs and editors/e2e/*.js
+/.idea/e2e/*.map
+
+# System Files misc.DS_Store
+/.sass-cacheThumbs.db /connect.lock /coverage/* /libpeerconnection.log npm-debug.log testem.log /typings
+# e2e
+/e2e/*.js /e2e/*.map
+#System Files
+.DS_Store
+#Dist files
+/dist/
+# End of https://www.gitignore.io/api/angular
+
+#node_modules
+/node_modules/

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http/http.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   p: number = 1;
   @ViewChild('search') public searchElement: ElementRef;
 
-  constructor(calendar: NgbCalendar, private fb: FormBuilder, private http: HttpClient, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor(calendar: NgbCalendar, private fb: FormBuilder, private http: HttpService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
     this.sForm = fb.group({
       'persons': [null, Validators.required],
     });
@@ -54,16 +54,16 @@ export class HomeComponent implements OnInit {
   Postit(post) {
     let fromDate: string;
     let toDate: string;
-    if (this.fromDate.month <= 10)
+    if (this.fromDate.month < 10)
       fromDate = "" + this.fromDate.year + "-0" + this.fromDate.month + "-" + this.fromDate.day;
     else
       fromDate = "" + this.fromDate.year + "-" + this.fromDate.month + "-" + this.fromDate.day;
-    if (this.toDate.month <= 10)
+    if (this.toDate.month < 10)
       toDate = "" + this.toDate.year + "-0" + this.toDate.month + "-" + this.toDate.day;
     else
       toDate = "" + this.toDate.year + "-" + this.toDate.month + "-" + this.toDate.day;
-    let getreq: string = "http://127.0.0.1:8000/api/rent?startdate='" + fromDate + "'&enddate='" + toDate + "'";
-    this.http.get(getreq).subscribe(data => {
+    let getreq: string = "http://127.0.0.1:8000/api/rent?startdate='" + fromDate + "'&enddate='" + toDate + "'&persons=" + post.persons + "&lat=" + this.lat + "&lng=" + this.lng;
+    this.http.Get(getreq).subscribe(data => {
       this.houses = data;
     });
   }

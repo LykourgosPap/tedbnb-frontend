@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-image:url("http://images.kuoni.co.uk/73/greco-philia-hotel-boutique-mykonos-40115647-1472724029-ImageGalleryLightboxLarge.jpg");
+  padding-top:0px;
+  background-size: 1920px 1080px;
+}

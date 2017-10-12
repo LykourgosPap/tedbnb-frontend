@@ -8,16 +8,24 @@ import { loggedin } from './global';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  loggedin : boolean = false
+  loggedin : boolean
   username : string
   constructor(private auth : AuthService) {
+
   }
 
   ngOnInit(){
+    this.loggedin = this.auth.loggedin
+    if (this.loggedin)
+      this.username = localStorage.getItem('username')
     this.auth.loggedChange.subscribe(data => {
       this.loggedin = data
       this.username = localStorage.getItem('username')
       console.log(this.loggedin)
     })
+  }
+
+  Logout(event){
+    this.auth.logout();
   }
 }

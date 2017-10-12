@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="https://bootswatch.com/4-alpha/flatly/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-toggleable-md navbar-light bg-primary">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,11 +8,13 @@
   <a class="navbar-brand" href="/">TedBnb</a>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a *ngIf="!loggedin" class="nav-item nav-link active" href="/login">Login</a>
+      <a *ngIf="!loggedin" class="nav-item nav-link active" href="/login">Login &nbsp;&nbsp; <i class="fa fa-lock" aria-hidden="true"></i></a>
       <a *ngIf="!loggedin" class="nav-item nav-link active" routerLink='/register'>Register</a>
-      <a *ngIf="loggedin" class="nav-item nav-link active" routerLink='/'> {{username}} </a>
-      <a *ngIf="loggedin" class="nav-item nav-link active" routerLink='/'>logout</a>
+      <a *ngIf="loggedin" class="nav-item nav-link active" routerLink='/profile'> {{username}} &nbsp;&nbsp; <i class="fa fa-user" aria-hidden="true"></i> </a>
+      <a *ngIf="loggedin" class="nav-item nav-link active" routerLink='/'>
+        <button type="button" class="btn-primary"(click)="Logout($event)">Logout &nbsp;&nbsp; <i class="fa fa-lock" aria-hidden="true"></i> </button>
+      </a>
+      <a *ngIf="loggedin" class="nav-item nav-link active" routerLink='/myhouses'>My houses<span class="sr-only">(current)</span></a>
     </div>
   </div>
 </nav>
